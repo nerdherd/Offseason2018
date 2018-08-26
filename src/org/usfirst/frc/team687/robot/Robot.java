@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team687.robot.subsystems.Drive;
 import org.usfirst.frc.team687.robot.subsystems.Elevator;
+import org.usfirst.frc.team687.robot.subsystems.Wrist;
 
 /**
  * 
@@ -28,6 +29,7 @@ public class Robot extends TimedRobot {
 	public static Drive drive;
 	public static Elevator elevator;
 	public static OI oi;
+	public static Wrist wrist;
 
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -41,6 +43,7 @@ public class Robot extends TimedRobot {
 		drive = new Drive();
 		elevator = new Elevator();
 		oi = new OI();
+		wrist = new Wrist();
 		
 		
 	}
