@@ -44,8 +44,6 @@ public class Robot extends TimedRobot {
 		elevator = new Elevator();
 		oi = new OI();
 		wrist = new Wrist();
-		
-		
 	}
 
 	/**
