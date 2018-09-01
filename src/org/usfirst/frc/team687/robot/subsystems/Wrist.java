@@ -11,6 +11,7 @@ import org.usfirst.frc.team687.robot.RobotMap;
 import org.usfirst.frc.team687.robot.utilities.NerdyTalon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Add your docs here.
@@ -45,6 +46,11 @@ public class Wrist extends Subsystem {
 
   public void resetEncoders() {
     m_wrist.setSelectedSensorPosition(0, 0, 0);
+  }
+  
+  public void reportToSmartDashboard() {
+	  SmartDashboard.putNumber("Wrist Position", getPosition());
+	  SmartDashboard.putNumber("Wrist Angle", getAngle());
   }
 
   @Override

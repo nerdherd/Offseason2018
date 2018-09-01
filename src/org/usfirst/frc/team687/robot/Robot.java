@@ -56,6 +56,7 @@ public class Robot extends TimedRobot {
 		Robot.drive.calcXY();
 		Robot.drive.reportToSmartDashboard();
 		Robot.oi.reportToSmartDashboard();
+		Robot.wrist.reportToSmartDashboard();
 		SmartDashboard.putData(pdp);
 
 	}

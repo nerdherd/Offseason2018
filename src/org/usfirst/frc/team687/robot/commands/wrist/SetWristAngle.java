@@ -13,15 +13,14 @@ import org.usfirst.frc.team687.robot.constants.WristConstants;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class WristPID extends Command {
+public class SetWristAngle extends Command {
   private double m_desiredAngle;
-  private double m_error, m_prevError;
-  private double m_startTime, m_timeout, m_prevTime;
+  private double m_error, m_prevError, m_output;
+  private double m_time, m_prevTime;
   private double m_dTerm;
   
-  public WristPID(double angle, double timeout) {
+  public SetWristAngle(double angle) {
     m_desiredAngle = angle;
-    m_timeout = timeout;
     
     requires(Robot.wrist);
   }
@@ -31,7 +30,7 @@ public class WristPID extends Command {
   protected void initialize() {
     Robot.wrist.resetEncoders(); 
 
-    m_startTime = Timer.getFPGATimestamp(); 
+    m_time = Timer.getFPGATimestamp(); 
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -39,17 +38,19 @@ public class WristPID extends Command {
   protected void execute() {
     m_error = m_desiredAngle - Robot.wrist.getAngle();
 
-    m_dTerm = (m_prevError - m_error) / (m_prevTime - Timer.getFPGATimestamp());
+    m_dTerm = (m_prevError - m_error) / (Timer.getFPGATimestamp() - m_prevTime);
+    
+    m_output = WristConstants.kWristP * m_error + WristConstants.kWristD * m_dTerm + WristConstants.kWristF;
+    Robot.wrist.setPower(m_output);
+    
+    m_prevError = m_error;
     m_prevTime = Timer.getFPGATimestamp();
-
-    double power = WristConstants.kWristP * m_error + WristConstants.kWristD * m_dTerm;
-    robot.wrist.setPower(power);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Timer.getFPGATimestamp() - m_startTime > m_timeout;
+    return false;
   }
 
   // Called once after isFinished returns true

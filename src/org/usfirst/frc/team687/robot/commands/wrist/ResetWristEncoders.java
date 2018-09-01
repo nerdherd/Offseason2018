@@ -31,7 +31,7 @@ public class ResetWristEncoders extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.wrist.getAverageEncoderPosition() == 0;;
+    return Robot.wrist.getPosition() == 0;
   }
 
   // Called once after isFinished returns true
