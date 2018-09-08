@@ -28,8 +28,6 @@ public class SetWristAngle extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.wrist.resetEncoders(); 
-
     m_time = Timer.getFPGATimestamp(); 
   }
 
@@ -50,7 +48,7 @@ public class SetWristAngle extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Math.abs(m_error) <= WristConstants.kWristAngleTolerance;
   }
 
   // Called once after isFinished returns true

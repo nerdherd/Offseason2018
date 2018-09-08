@@ -6,4 +6,5 @@ public class SuperstructureConstants {
 	public static final double kElevatorP = 0;
 	public static final double kElevatorD = 0;
 	
+	public static final double kElevatorPositionTolerance = 0;
 }

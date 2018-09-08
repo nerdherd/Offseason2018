@@ -25,5 +25,7 @@ public class RobotMap {
 	
 	public static final int kElevatorTalonSRXID = 7;
 	public static final int kWristTalonSRXID = 8;
+	
+	public static final int kIntakeRollersTalonSRXID = 9;
 
 }

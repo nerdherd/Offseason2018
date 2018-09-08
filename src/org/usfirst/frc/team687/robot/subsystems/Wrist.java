@@ -22,6 +22,10 @@ public class Wrist extends Subsystem {
 
   public Wrist() {
     m_wrist = new NerdyTalon(RobotMap.kWristTalonSRXID);
+	m_wrist.configDefaultSettings();
+	m_wrist.setInverted(false);
+	m_wrist.setSensorPhase(true);
+	m_wrist.setNeutralMode(NeutralMode.Brake);
     m_wrist.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
   }
 
